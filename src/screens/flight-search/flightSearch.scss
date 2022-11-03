@@ -1,0 +1,16 @@
+.arrival, .departure, .date{
+    display: flex;
+    margin: 5px;
+
+    & .text{
+        margin-right: 10px;
+    }
+
+    & input{
+        margin-top: 5px;
+    }
+}
+
+.flights{
+    margin-top: 20px;
+}
