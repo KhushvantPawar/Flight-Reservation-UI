@@ -1,4 +1,4 @@
-.pname, .gender, .age, .card, .card-name, .card-cvv, .card-expiry{
+.fname, .lname, .mname, .email, .phone, .card, .card-name, .card-cvv, .card-expiry{
     display: flex;
     & .text{
         margin-right: 10px;

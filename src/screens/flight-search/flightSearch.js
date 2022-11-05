@@ -5,7 +5,7 @@ import './flightSearch.scss';
 export const Flight= () => {
 
     const [ flights , setFlights ] = useState({});
-
+    const [ detail , setDetail] = useState([]);
     const handleChange = (event) =>{
 
         if(event.target.className === "input-arrival"){
@@ -20,9 +20,14 @@ export const Flight= () => {
     }
 
     const search= () => {
-        console.log(flights);
-        // API Call
-        // flight Search
+        console.log()
+        // console.log(flights);
+        fetch(`http://localhost:8080/flightreservation/findflights?arrivalCity=${flights.arrivalCity}&departureCity=${flights.departureCity}&departureDate=${flights.departureDate}`,{
+            method: "GET",
+            mode: "no-cors"
+        })
+       .then(response => response.json())
+       .then( response => setDetail(response));
     }
 
     return(
@@ -33,7 +38,7 @@ export const Flight= () => {
         <input className="input-arrival" onChange={handleChange}></input>
         </div>
         <div className="departure">
-        <div className="text">Departure City:</div>
+        <div className="text">Departure City :</div>
         <input className="input-departure" onChange={handleChange}></input>
         </div>
         <div className="date">
@@ -41,7 +46,9 @@ export const Flight= () => {
         <input className="input-date" type={"date"} onChange={handleChange}></input>
         </div>
         <button className="search" onClick={search}>Search</button>
-        <div className="flights"><FlightCard /></div>
+        {detail.map((items)=>{
+            return(<div className="flights"><FlightCard item={items} /></div>)
+        })}
         </>
     );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./login.scss";
 
 export const Login = () => {
@@ -6,7 +7,7 @@ export const Login = () => {
     // let name = 'fadfafad';
     const [name, setName] = useState();
     const [pass, setPass] = useState();
-
+    const navigate= useNavigate();
     const handleChange = (event) => {
 
         if (event.target.className === "input-username") {
@@ -20,11 +21,18 @@ export const Login = () => {
         }
     }
 
-    const loginSubmit = () => {
-        console.log(name, pass);
-        // API Call
-        // async 
-        // await
+    const loginSubmit = async () => {
+        // console.log(name, pass);
+
+        const response = await fetch(`http://localhost:8080/flightreservation/login?username=${name}&password=${pass}`,{
+            method: "POST",
+            body: {},
+            mode: "no-cors"
+        })
+
+        if(response){
+            navigate("/reservation");
+        }
     }
 
 
