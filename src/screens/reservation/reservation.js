@@ -85,6 +85,7 @@ export const Reservation= () =>{
         <div className="text">CVV :</div>
         <input className="input-card-expiry" type={"text"}></input>
     </div>
+    
     <button className="book" onClick={bookFlight}>BOOK</button>
     <button className="info">Flight Information</button>
     </>

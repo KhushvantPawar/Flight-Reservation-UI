@@ -1,17 +1,20 @@
 .arrival, .departure, .date{
     display: flex;
-    margin: 5px;
-
-    & .text{
-        margin-right: 10px;
-    }
-
-    & input{
-        margin-top: 5px;
-    }
+    margin: 1rem;
 }
 
-.flights{
+.flight-card{
     display: block;
     margin-top: 20px;
+}
+
+.flight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.searchAlert {
+    color: red;
 }

@@ -5,6 +5,7 @@ import './signup.scss';
 export const Signup = () => {
 
     const [state, setState] = useState({});
+    const [successSignup, setSuccessSignup] = useState(false);
     const navigate = useNavigate();
     const handleChange = (event) => {
 
@@ -24,18 +25,6 @@ export const Signup = () => {
 
     const signupSubmit = async () => {
         console.log(state);
-        // axios, 
-        // fetch("http://localhost:8080/flightreservation/signup",{
-        //     method: "POST",
-        //     body: state,
-        //     mode: "no-cors"
-        // })
-        // .then(res => res.json())
-        // .then(res => console.log(res));
-
-        // console.log('fadfaf');
-        // console.log('fadfafa');
-        // setLoader(true);
         let header = new Headers();
         header.append("Content-Type", "application/json");
         header.append("Access-Control-Allow-Origin", "*")
@@ -55,7 +44,10 @@ export const Signup = () => {
         })
         console.log(response);
         if(response.ok){
-            navigate("/flights");
+            setSuccessSignup(true);
+            setTimeout(() => {
+                navigate("/login");
+            },3000);
         }
     }
 
@@ -78,6 +70,7 @@ export const Signup = () => {
                     <div className="text">Password :</div>
                     <input className="input-password" type={"password"} onChange={handleChange}></input>
                 </div>
+                {successSignup && ( <div className="successAlert"> Signup successfully done </div>) }
                 <button className="signup" onClick={signupSubmit}>Sign up</button>
             </div>
         </>
